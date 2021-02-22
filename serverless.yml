@@ -23,6 +23,7 @@ plugins:
   - serverless-offline
 provider:
   name: aws
+  region: 'us-west-2'
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
   iam:
@@ -72,7 +73,7 @@ functions:
   checkAvailability:
     handler: handler.checkAvailability
     events:
-      - schedule: rate(5 minutes)
+      - schedule: rate(15 minutes)
 # hello:
 #  handler: handler.hello
 #    The following are a few example events you can configure

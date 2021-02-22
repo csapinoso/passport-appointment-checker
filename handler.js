@@ -31,7 +31,11 @@ async function checkSlotsForMonth(month, year) {
       // sendEmail('NO Passport Appointment Slots Available', `No slots found for month ${month} year ${year}`);
     }
   } catch (error) {
-    console.error('error parsing response', error); 
+    console.error('error parsing response', error);
+    sendEmail('Failed to check passport appointment', `
+    Failed to fetch appointment slots for month ${month} year ${year}.
+    ${url} might be down. Check ${link}
+    `);
   }
 }
 
@@ -39,7 +43,7 @@ function sendEmail(subject, body) {
   ses.sendEmail({
     Source: 'charton.sapinoso@gmail.com',
     Destination: {
-      ToAddresses: ['csapinoso@me.com', 'sapfam@googlegroups.com'],
+      ToAddresses: ['csapinoso@me.com', 'sapfam@googlegroups.com', 'djzorrilla1@gmail.com'],
     },
     Message: {
       Subject: { Data: subject },
